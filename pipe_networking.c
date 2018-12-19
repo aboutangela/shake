@@ -31,6 +31,7 @@ int server_handshake(int *to_client) {
   read(from,message,sizeof(message));
   printf("received message: %s\n", message);
 
+  *to_client = to;
   return from;
 }
 
@@ -66,5 +67,7 @@ int client_handshake(int *to_server) {
   remove(priv);
 
   write(to,ACK,sizeof(ACK));
-  return to;
+
+  *to_server = to;
+  return from;
 }
