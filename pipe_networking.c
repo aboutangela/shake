@@ -12,7 +12,7 @@
   =========================*/
 int server_handshake(int *to_client) {
   printf("making wkp...");
-  if(mkfifo("mario", 0666))
+  if(!mkfifo("mario", 0666))
     printf("success!\n");
   else
     printf("failed\n");
@@ -50,7 +50,8 @@ int client_handshake(int *to_server) {
   printf("making private fifo...");
   char priv[HANDSHAKE_BUFFER_SIZE];
   sprintf(priv,"%d",getpid());
-  if(mkfifo(priv, 0666))
+  if(!mkfifo(priv, 0666))
+
     printf("success!\n");
   else
     printf("failed\n");
